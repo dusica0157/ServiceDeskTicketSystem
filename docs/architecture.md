@@ -74,3 +74,64 @@ Users and support agents will be able to communicate through comments associated
 ### Administration
 
 Administrators will be responsible for managing users, roles, categories and system-level functionality.
+## Roles and Permissions
+
+### User
+
+Users can:
+
+- Register and log in
+- Create support tickets
+- View their own tickets
+- Update allowed fields on their own tickets
+- Add comments to their tickets
+
+### Support Agent
+
+Support agents can:
+
+- View assigned tickets
+- Update ticket status
+- Update ticket priority
+- Add comments
+- Resolve tickets
+
+### Admin
+
+Administrators can:
+
+- View all tickets
+- Manage users
+- Manage roles
+- Manage categories
+- Assign tickets to support agents
+- Perform administrative operations
+## Ticket Lifecycle
+
+Tickets will move through the following statuses:
+
+Open
+→ In Progress
+→ Resolved
+→ Closed
+
+A newly created ticket will have the Open status.
+
+A support agent can start working on the ticket and change its status to In Progress.
+
+When the issue has been solved, the support agent can mark the ticket as Resolved.
+
+A resolved ticket can then be closed after the issue has been confirmed as completed.
+
+## Request Flow
+
+Example flow for creating a ticket:
+
+React Client
+→ POST /api/tickets
+→ TicketController
+→ TicketService
+→ Entity Framework Core
+→ PostgreSQL
+
+The created ticket is then returned through the same layers back to the React client.

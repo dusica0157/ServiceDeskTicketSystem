@@ -1,7 +1,4 @@
 
-using System.ComponentModel;
-using System.Reflection.Metadata;
-using System.Xml;
 using  ServiceDesk.Api.Enums;
 
 namespace ServiceDesk.Api.Models;
@@ -28,12 +25,10 @@ public class Ticket
     public int? AssignedAgentId {get; set;}
     public User? AssignedAgent {get; set;}
 
-    public Category Category  {get; set;} = null!;
+  public int CategoryId { get; set; }
 
-    public ICollection<Ticket> CreatedTickets {get; set;} = new List<Ticket>();
+public Category Category { get; set; } = null!;
 
-    public ICollection<Ticket> AssignedTickets {get; set;} = new List<Tickets>();
-
-    public ICollection<Comment> Comments { get; set;} = new List<XmlComment>();
+    public ICollection<Comment> Comments { get; set;} = new List<Comment>();
 
 } 

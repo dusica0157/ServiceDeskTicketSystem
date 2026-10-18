@@ -32,3 +32,8 @@ C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\obj\Debug\net10.0\
 C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\obj\Debug\net10.0\ServiceDesk.Api.pdb
 C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\obj\Debug\net10.0\ServiceDesk.Api.genruntimeconfig.cache
 C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\obj\Debug\net10.0\ref\ServiceDesk.Api.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Npgsql.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

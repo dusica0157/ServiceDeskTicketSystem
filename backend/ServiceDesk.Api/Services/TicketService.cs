@@ -17,12 +17,25 @@ public class TicketService : ITicketService
         _db = db;
     }
 
-    public async Task<List<Ticket>> GetAllTicketsAsync()
+    public async Task<List<TicketResponseDto>> GetAllTicketsAsync()
     {
-        return await _db.Tickets.ToListAsync();
+         return await _db.Tickets
+        .Select(ticket => new TicketResponseDto
+        {
+            Id = ticket.Id,
+            Title = ticket.Title,
+            Description = ticket.Description,
+            Status = ticket.Status,
+            Priority = ticket.Priority,
+            CreatedAt = ticket.CreatedAt,
+            CreatedByUserId = ticket.CreatedByUserId,
+            CategoryId = ticket.CategoryId,
+            AssignedAgentId = ticket.AssignedAgentId
+        })
+        .ToListAsync();
     }
 
-    public async Task<Ticket> CreateTicketAsync(CreateTicketDto dto, int createdByUserId)
+    public async Task<TicketResponseDto> CreateTicketAsync(CreateTicketDto dto, int createdByUserId)
 
     {
 
@@ -53,7 +66,18 @@ public class TicketService : ITicketService
         _db.Tickets.Add(ticket);
 
         await _db.SaveChangesAsync();
-        return ticket;
+        return new TicketResponseDto
+        {
+            Id = ticket.Id,
+            Title = ticket.Title,
+            Description = ticket.Description,
+            Status = ticket.Status,
+            Priority = ticket.Priority,
+            CreatedAt = ticket.CreatedAt,
+            CreatedByUserId = ticket.CreatedByUserId,
+            CategoryId = ticket.CategoryId,
+            AssignedAgentId = ticket.AssignedAgentId
+        };
     }
 
 

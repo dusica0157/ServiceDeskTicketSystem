@@ -1,13 +1,12 @@
 using ServiceDesk.Api.DTOs.Tickets;
-using ServiceDesk.Api.Models;
-
 
 namespace ServiceDesk.Api.Services.Interfaces;
 
-
 public interface ITicketService
 {
-  Task<List<Ticket>> GetAllTicketsAsync();
+    Task<List<TicketResponseDto>> GetAllTicketsAsync();
 
-  Task<Ticket> CreateTicketAsync(CreateTicketDto dto, int createdByUserId);
+    Task<TicketResponseDto> CreateTicketAsync(
+        CreateTicketDto dto,
+        int createdByUserId);
 }

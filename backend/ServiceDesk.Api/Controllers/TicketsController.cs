@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using ServiceDesk.Api.DTOs.Tickets;
+using ServiceDesk.Api.Models;
 using ServiceDesk.Api.Services.Interfaces;
 
 namespace ServiceDesk.Api.Controllers;
@@ -20,5 +22,21 @@ public class TicketsController : ControllerBase
         var tickets = await _ticketService.GetAllTicketsAsync();
 
         return Ok(tickets);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Create(
+        [FromBody] CreateTicketDto dto,
+        [FromQuery] int createdByUserId)
+    {
+        try
+        {
+              var ticket = await _ticketService.CreateTicketAsync(dto, createdByUserId);
+        return StatusCode(201, ticket);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+      
     }
 }

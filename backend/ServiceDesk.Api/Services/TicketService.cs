@@ -80,5 +80,22 @@ public class TicketService : ITicketService
         };
     }
 
-
+    public async Task<TicketResponseDto?> GetTicketByIdAsync(int id)
+{
+    return await _db.Tickets
+        .Where(ticket => ticket.Id == id)
+        .Select(ticket => new TicketResponseDto
+        {
+            Id = ticket.Id,
+            Title = ticket.Title,
+            Description = ticket.Description,
+            Status = ticket.Status,
+            Priority = ticket.Priority,
+            CreatedAt = ticket.CreatedAt,
+            CreatedByUserId = ticket.CreatedByUserId,
+            CategoryId = ticket.CategoryId,
+            AssignedAgentId = ticket.AssignedAgentId
+        })
+        .FirstOrDefaultAsync();
+}
 }

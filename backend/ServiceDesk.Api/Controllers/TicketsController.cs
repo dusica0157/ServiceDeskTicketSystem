@@ -30,13 +30,25 @@ public class TicketsController : ControllerBase
     {
         try
         {
-              var ticket = await _ticketService.CreateTicketAsync(dto, createdByUserId);
-        return StatusCode(201, ticket);
+            var ticket = await _ticketService.CreateTicketAsync(dto, createdByUserId);
+            return StatusCode(201, ticket);
         }
         catch (ArgumentException ex)
         {
             return BadRequest(ex.Message);
         }
-      
+
+    }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var ticket= await _ticketService.GetTicketByIdAsync(id);
+
+        if(ticket == null)
+        {
+            return NotFound();
+
+        }
+        return Ok(ticket);
     }
 }

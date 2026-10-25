@@ -9,4 +9,6 @@ public interface ITicketService
     Task<TicketResponseDto> CreateTicketAsync(
         CreateTicketDto dto,
         int createdByUserId);
+
+        Task<TicketResponseDto?> GetTicketByIdAsync(int id);
 }

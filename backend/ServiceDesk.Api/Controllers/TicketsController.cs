@@ -51,4 +51,26 @@ public class TicketsController : ControllerBase
         }
         return Ok(ticket);
     }
+   [HttpPatch("{id}/status")]
+public async Task<IActionResult> UpdateStatus(
+    [FromRoute] int id,
+    [FromBody] UpdateTicketStatusDto dto)
+{
+    try
+    {
+        var updatedTicket = await _ticketService
+            .UpdateTicketStatusAsync(id, dto);
+
+        if (updatedTicket == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(updatedTicket);
+    }
+    catch (ArgumentException ex)
+    {
+        return BadRequest(ex.Message);
+    }
+}
 }

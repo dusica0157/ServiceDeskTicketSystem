@@ -11,4 +11,5 @@ public interface ITicketService
         int createdByUserId);
 
         Task<TicketResponseDto?> GetTicketByIdAsync(int id);
+        Task<TicketResponseDto?> UpdateTicketStatusAsync(int id, UpdateTicketStatusDto dto);
 }

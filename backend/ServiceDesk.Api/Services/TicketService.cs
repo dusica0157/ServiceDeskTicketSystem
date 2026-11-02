@@ -98,4 +98,40 @@ public class TicketService : ITicketService
         })
         .FirstOrDefaultAsync();
 }
+   
+   public async Task<TicketResponseDto?> UpdateTicketStatusAsync(
+    int id,
+    UpdateTicketStatusDto dto)
+    {
+        var ticket = await _db.Tickets.
+        FirstOrDefaultAsync(t=> t.Id == id);
+
+        if(ticket == null)
+        {
+            return null;
+        }
+
+        if(!Enum.IsDefined(dto.Status))
+        {
+            throw new ArgumentException("Invalid ticket status");
+
+        }
+
+        ticket.Status= dto.Status;
+
+        await _db.SaveChangesAsync();
+return new TicketResponseDto
+    {
+        Id = ticket.Id,
+        Title = ticket.Title,
+        Description = ticket.Description,
+        Status = ticket.Status,
+        Priority = ticket.Priority,
+        CreatedAt = ticket.CreatedAt,
+        CreatedByUserId = ticket.CreatedByUserId,
+        CategoryId = ticket.CategoryId,
+        AssignedAgentId = ticket.AssignedAgentId
+    };
+    }
+   
 }

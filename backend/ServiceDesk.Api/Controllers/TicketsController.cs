@@ -42,35 +42,60 @@ public class TicketsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var ticket= await _ticketService.GetTicketByIdAsync(id);
+        var ticket = await _ticketService.GetTicketByIdAsync(id);
 
-        if(ticket == null)
+        if (ticket == null)
         {
             return NotFound();
 
         }
         return Ok(ticket);
     }
-   [HttpPatch("{id}/status")]
-public async Task<IActionResult> UpdateStatus(
-    [FromRoute] int id,
-    [FromBody] UpdateTicketStatusDto dto)
-{
-    try
+    [HttpPatch("{id}/status")]
+    public async Task<IActionResult> UpdateStatus(
+     [FromRoute] int id,
+     [FromBody] UpdateTicketStatusDto dto)
     {
-        var updatedTicket = await _ticketService
-            .UpdateTicketStatusAsync(id, dto);
-
-        if (updatedTicket == null)
+        try
         {
-            return NotFound();
+            var updatedTicket = await _ticketService
+                .UpdateTicketStatusAsync(id, dto);
+
+            if (updatedTicket == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedTicket);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+     [HttpPatch("{id}/assign")]
+    public async Task<IActionResult> UpdateAgent(
+        [FromRoute] int id,
+        [FromBody] UpdateTicketAgentDto dto)
+
+    {
+        try
+        {
+            var updatedTicket= await _ticketService.UpdateTicketAgentAsync(id, dto);
+
+            if (updatedTicket == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(updatedTicket);
+
         }
 
-        return Ok(updatedTicket);
+        catch(ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        
     }
-    catch (ArgumentException ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
 }

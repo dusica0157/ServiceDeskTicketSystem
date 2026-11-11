@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
     );
 builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IUserService, UserService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

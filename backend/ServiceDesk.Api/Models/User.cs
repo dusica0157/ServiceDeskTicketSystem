@@ -9,6 +9,7 @@ public class User
     public string LastName { get; set; } = string.Empty;
 
     public string Email { get; set; } = string.Empty;
+    public UserRole Role {get; set;} = UserRole.Employee;
 
     public ICollection<Ticket> CreatedTickets { get; set; } = new List<Ticket>();
 

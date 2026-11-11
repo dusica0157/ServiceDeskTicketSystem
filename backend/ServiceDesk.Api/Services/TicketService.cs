@@ -147,12 +147,17 @@ public class TicketService : ITicketService
             return null;
         }
 
-        bool agentExists = await _db.Users
-            .AnyAsync(u => u.Id == dto.AgentId);
+        var agent = await _db.Users
+            .FirstOrDefaultAsync(u => u.Id == dto.AgentId);
 
-        if (!agentExists)
+        if (agent== null)
         {
             throw new ArgumentException("Agent does not exist.");
+        }
+
+          if (agent.Role != UserRole.SupportAgent)
+        {
+            throw new ArgumentException("Only support agents can be assigned tickets.");
         }
 
         ticket.AssignedAgentId = dto.AgentId;

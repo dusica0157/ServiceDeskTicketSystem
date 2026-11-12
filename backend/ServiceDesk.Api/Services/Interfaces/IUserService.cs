@@ -5,6 +5,8 @@ public interface IUserService{
 
     Task<List<UserResponseDto>> GetAllUsersAsync();
 
+    Task<List<UserResponseDto>> GetSupportAgentsAsync();
+
 
 
 

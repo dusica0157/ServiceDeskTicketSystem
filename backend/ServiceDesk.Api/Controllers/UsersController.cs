@@ -24,4 +24,10 @@ public class UsersController : ControllerBase
 
         return Ok(users);
     }
+    [HttpGet("support-agents")]
+    public async Task<IActionResult> GetSupportAgents()
+    {
+        var supportAgents= await _userService.GetSupportAgentsAsync();
+        return Ok(supportAgents);
+    }
 }

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ServiceDesk.Api.Data;
 using ServiceDesk.Api.DTOs.Categories;
 using ServiceDesk.Api.Models;
+using ServiceDesk.Api.Enums;
 
 public class CategoryService : ICategoryService
 {
@@ -74,5 +75,25 @@ public class CategoryService : ICategoryService
 
     }
 
+    public async Task<CategoryDeleteResult> DeleteCategoryAsync(int categoryId)
+    {
+        var category = await _db.Categories.FirstOrDefaultAsync(category => category.Id == categoryId);
+
+        if (category == null)
+        {
+            return CategoryDeleteResult.NotFound;
+        }
+
+
+        var ticket = await _db.Tickets.AnyAsync(ticket => ticket.CategoryId == category.Id);
+
+        if (ticket == true)
+        {
+            return CategoryDeleteResult.HasTickets;
+        }
+        else _db.Categories.Remove(category);
+        await _db.SaveChangesAsync();
+        return CategoryDeleteResult.Deleted;
+    }
 }
 

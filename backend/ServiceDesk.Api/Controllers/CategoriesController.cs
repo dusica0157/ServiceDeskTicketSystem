@@ -3,6 +3,7 @@ namespace ServiceDesk.Api.Controllers;
 using ServiceDesk.Api.DTOs.Categories;
 using Microsoft.AspNetCore.Mvc;
 using ServiceDesk.Api.Services.Interfaces;
+using ServiceDesk.Api.Enums;
 [ApiController]
 [Route("api/categories")]
 public class CategoriesController : ControllerBase
@@ -33,12 +34,28 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> UpdateCategory(int categoryId, UpdateCategoryDto dto)
     {
         var response = await _categoryService.UpdateCategoryAsync(categoryId, dto);
-        if(response == null)
+        if (response == null)
         {
             return NotFound();
         }
 
         return Ok(response);
+    }
+    [HttpDelete("{categoryId}")]
+    public async Task<IActionResult> DeleteCategory(int categoryId)
+    {
+        var response = await _categoryService.DeleteCategoryAsync(categoryId);
+
+        if (response == CategoryDeleteResult.NotFound)
+        {
+            return NotFound();
+        }
+        if (response == CategoryDeleteResult.HasTickets)
+        {
+            return Conflict();
+        }
+
+        return NoContent();
     }
 
 }

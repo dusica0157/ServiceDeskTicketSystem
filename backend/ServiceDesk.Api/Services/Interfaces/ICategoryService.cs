@@ -1,7 +1,7 @@
 namespace ServiceDesk.Api.Services.Interfaces;
 
 using ServiceDesk.Api.DTOs.Categories;
-
+using ServiceDesk.Api.Enums;
 
 public interface ICategoryService
 {
@@ -9,5 +9,7 @@ public interface ICategoryService
 
     Task<CategoryResponseDto> CreateCategoryAsync(CreateCategoryDto dto);
 
-    Task<CategoryResponseDto?> UpdateCategoryAsync(int CategoryId, UpdateCategoryDto dto);
+    Task<CategoryResponseDto?> UpdateCategoryAsync(int categoryId, UpdateCategoryDto dto);
+
+    Task<CategoryDeleteResult> DeleteCategoryAsync (int ategoryId);
 }

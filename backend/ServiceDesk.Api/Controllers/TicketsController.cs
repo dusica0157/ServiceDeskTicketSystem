@@ -33,6 +33,7 @@ public class TicketsController : ControllerBase
             var ticket = await _ticketService.CreateTicketAsync(dto, createdByUserId);
             return StatusCode(201, ticket);
         }
+        
         catch (ArgumentException ex)
         {
             return BadRequest(ex.Message);

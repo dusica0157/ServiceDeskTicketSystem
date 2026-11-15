@@ -121,3 +121,6 @@ C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\
 C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\DELL\ServiceDeskTicketSystem\backend\ServiceDesk.Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll

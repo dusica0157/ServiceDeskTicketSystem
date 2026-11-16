@@ -14,4 +14,6 @@ public class User
     public ICollection<Ticket> CreatedTickets { get; set; } = new List<Ticket>();
 
     public ICollection<Ticket> AssignedTickets { get; set; } = new List<Ticket>();
+
+    public string PasswordHash {get; set;} = string.Empty;
 }

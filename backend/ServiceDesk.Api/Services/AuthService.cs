@@ -49,4 +49,35 @@ public class AuthService : IAuthService
         };
 
     }
+
+
+    public async Task<UserResponseDto?> LoginAsync(LoginDto dto)
+    {
+        
+        var user = await _db.Users.FirstOrDefaultAsync(user=> user.Email == dto.Email);
+
+        if ( user == null)
+        {
+            return null;
+        }
+        
+         var passwordResult = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
+
+         if(passwordResult== PasswordVerificationResult.Failed)
+        {
+            return null;
+        }
+
+        return new UserResponseDto
+        {
+            Id= user.Id,
+            FirstName= user.FirstName,
+            LastName= user.LastName,
+            Email= user.Email,
+            Role= user.Role
+        };
+
+    }
+
+
 }
